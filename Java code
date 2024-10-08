@@ -1,0 +1,79 @@
+class Employee {
+    class Emp {
+        int eid;
+        String ename;
+        String desg;
+        float salary;
+
+        Emp(int eid, String ename, String desg, float salary) {
+            this.eid = eid;
+            this.ename = ename;
+            this.desg = desg;
+            this.salary = salary;
+        }
+    }
+
+    Emp[] employees;
+
+    Employee(int size) {
+        employees = new Emp[size];
+    }
+
+    void printAllEmployee() {
+        for (Emp emp : employees) {
+            if (emp != null) {
+                System.out.println("Employee ID: " + emp.eid);
+                System.out.println("Name: " + emp.ename);
+                System.out.println("Designation: " + emp.desg);
+                System.out.println("Salary: $" + emp.salary);
+                System.out.println("------------------------");
+            }
+        }
+    }
+
+    void searchEmployeeByEid(int eid) {
+        for (Emp emp : employees) {
+            if (emp != null && emp.eid == eid) {
+                System.out.println("Employee Found:");
+                System.out.println("Employee ID: " + emp.eid);
+                System.out.println("Name: " + emp.ename);
+                System.out.println("Designation: " + emp.desg);
+                System.out.println("Salary: $" + emp.salary);
+                return;
+            }
+        }
+        System.out.println("Employee not found with ID: " + eid);
+    }
+
+    void deleteEmployeeByEid(int eid) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].eid == eid) {
+                employees[i] = null;
+                System.out.println("Employee with ID " + eid + " deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Employee not found with ID: " + eid);
+    }
+
+    public static void main(String[] args) {
+        Employee emp = new Employee(5);
+        emp.employees[0] = emp.new Emp(101, "Yash", "Analyst", 233999);
+        emp.employees[1] = emp.new Emp(102, "Vinay", "Analyst1", 333999);
+        emp.employees[2] = emp.new Emp(103, "Prathmesh", "Analyst2", 349233);
+        emp.employees[3] = emp.new Emp(104, "Nayan", "Analyst1", 335999);
+        emp.employees[4] = emp.new Emp(105, "Vivek", "Analyst1", 332399);
+
+        System.out.println("All Employees:");
+        emp.printAllEmployee();
+
+        System.out.println("\nSearch Employee by ID:");
+        emp.searchEmployeeByEid(103);
+
+        System.out.println("\nDelete Employee by ID:");
+        emp.deleteEmployeeByEid(103);
+
+        System.out.println("\nEmployees after deletion:");
+        emp.printAllEmployee();
+    }
+}
